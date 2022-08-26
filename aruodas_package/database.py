@@ -79,4 +79,3 @@ class DataBase:
     def read(self, table):
         df = pd.read_sql(table, con=self.engine, index_col="id")
         return df
-
