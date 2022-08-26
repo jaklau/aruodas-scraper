@@ -15,7 +15,7 @@ class TestDataBase(unittest.TestCase):
         cls.database = DataBase("", "", "", "")
 
         # run database on local sqlite database
-        cls.database.engine = db.create_engine(f"sqlite:///docs/aruodas.db")
+        cls.database.engine = db.create_engine(f"sqlite:///docs/tests/aruodas.db")
 
         # delete all tables in local sqlite database for simpler testing
         cls.database.delete_all_tables()

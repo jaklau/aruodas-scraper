@@ -1,6 +1,7 @@
 import unittest
 from selenium import webdriver
 from aruodas_package import AruodasBot
+import os
 
 
 # test AruodasBot class
@@ -12,8 +13,12 @@ class TestAruodasBot(unittest.TestCase):
         # run tests page bot
         self.bot = AruodasBot(driver)
 
-        # run browser on static file
-        self.bot.webpage = "file:///C:/Users/Laurynas/PycharmProjects/PROJECTS/aruodas-bot/docs/aruodas.html"
+        # get current absolute direction
+        dirname = os.path.dirname(__file__)
+        # get absolute direction to html file
+        filename = os.path.join(dirname, "../docs/tests/aruodas.html")
+        # open static html file with driver
+        self.bot.webpage = f"file:///{filename}"
         self.bot.get()
         self.bot.read()
 
