@@ -10,6 +10,7 @@ setup(
     name='aruodas-bot',
     version='0.1.0',
     packages=['aruodas_package'],
+    install_requires=['pandas', 'beautifulsoup4'],
     url='',
     license=lic,
     author='Laurynas',
