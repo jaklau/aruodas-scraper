@@ -24,6 +24,7 @@ class AruodasBot:
         self.webpage = f"{URL}{page}"
         self.soup = None
 
+    # open web page with browser, extract source and create beautiful soup
     def get(self):
         # open web page with browser
         self.driver.get(self.webpage)

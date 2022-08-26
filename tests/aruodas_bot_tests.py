@@ -13,7 +13,7 @@ class TestAruodasBot(unittest.TestCase):
         self.bot = AruodasBot(driver)
 
         # run browser on static file
-        self.bot.webpage = "file:///C:/Users/Laurynas/PycharmProjects/PROJECTS/aruodas-bot/tests/aruodas.html"
+        self.bot.webpage = "file:///C:/Users/Laurynas/PycharmProjects/PROJECTS/aruodas-bot/docs/aruodas.html"
         self.bot.get()
         self.bot.read()
 

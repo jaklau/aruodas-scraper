@@ -1,6 +1,7 @@
 import sqlalchemy as db
-from sqlalchemy.orm import declarative_base
+from sqlalchemy.orm import declarative_base, Session
 import pandas as pd
+import datetime as dt
 
 # class contains a MetaData object where newly defined Table objects are collected
 Base = declarative_base()
@@ -24,26 +25,58 @@ class Flat(Base):
     status = db.Column(db.String(100))
 
 
+# database table class with columns
+class Log(Base):
+    __tablename__ = "log"
+    id = db.Column(db.Integer, primary_key=True)
+    datetime = db.Column(db.DateTime)
+    records = db.Column(db.Integer)
+
+
 # sql database class for reading, writing data between pandas dataframes and sql database
 class DataBase:
     def __init__(self, user, password, host, database):
         # create database engine and connect
-        self.engine = db.create_engine(f"postgresql://{user}:{password}@{host}/{database}")
+        self.engine = db.create_engine("sqlite:///tests/aruodas.db")
+        self.session = None
+
+    def connect(self):
         self.engine.connect()
 
-        # if there is no table in database, create one
+        # if there is no tables in database, then create
         Base.metadata.create_all(self.engine)
 
-    # get all table names
-    def table_names(self):
-        inspector = db.inspect(self.engine)
-        return inspector.get_table_names()
+        # create session
+        self.session = Session(self.engine)
+
+    def delete_all_tables(self):
+        Base.metadata.drop_all(self.engine)
+
+    # check if there are already records on current day
+    def is_records(self):
+        date_now = dt.datetime.now().strftime("%Y-%m-%d")
+        record = self.session.query(Log).filter(Log.datetime.between(
+            f'{date_now} 00:00:00', f'{date_now} 23:59:59')).first()
+
+        self.session.commit()
+
+        if record is None:
+            return False
+        else:
+            return True
+
+    # write pandas dataframe to database
+    def write(self, df: pd.DataFrame, if_exists="append"):
+        df.to_sql(name="flats", con=self.engine, index=False, if_exists=if_exists)
+        date_time = dt.datetime.now()
+        records = int(df["date"].count())
+        log = Log(datetime=date_time, records=records)
+
+        self.session.add(log)
+        self.session.commit()
 
     # read from database and write data to pandas dataframe
     def read(self, table):
         df = pd.read_sql(table, con=self.engine, index_col="id")
         return df
 
-    # write pandas dataframe to database
-    def write(self, df: pd.DataFrame, table, if_exists="append"):
-        df.to_sql(name=table, con=self.engine, index=False, if_exists=if_exists)
