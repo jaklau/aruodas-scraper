@@ -37,7 +37,7 @@ class Log(Base):
 class DataBase:
     def __init__(self, user, password, host, database):
         # create database engine and connect
-        self.engine = db.create_engine("sqlite:///tests/aruodas.db")
+        self.engine = db.create_engine(f"postgresql://{user}:{password}@{host}/{database}")
         self.session = None
 
     def connect(self):

@@ -1,6 +1,6 @@
 pandas~=1.4.3
-selenium~=4.3.0
+selenium==4.4.3
 bs4~=0.0.1
 beautifulsoup4~=4.11.1
-setuptools==63.4.2
+setuptools==65.3.0
 SQLAlchemy==1.4.40
