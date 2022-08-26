@@ -33,7 +33,7 @@ class Log(Base):
     records = db.Column(db.Integer)
 
 
-# sql database class for reading, writing data between pandas dataframes and sql database
+# sql database class for reading, writing docs between pandas dataframes and sql database
 class DataBase:
     def __init__(self, user, password, host, database):
         # create database engine and connect
@@ -75,7 +75,7 @@ class DataBase:
         self.session.add(log)
         self.session.commit()
 
-    # read from database and write data to pandas dataframe
+    # read from database and write docs to pandas dataframe
     def read(self, table):
         df = pd.read_sql(table, con=self.engine, index_col="id")
         return df

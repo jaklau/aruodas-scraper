@@ -31,7 +31,7 @@ else:
     bot.read()
     bot.print()
 
-    # first page data save to main data
+    # first page docs save to main docs
     data = bot.data
 
     # on web page find number of all pages
@@ -51,7 +51,7 @@ else:
     # get current date as string: 2022-01-01
     date = dt.datetime.now().strftime("%Y-%m-%d")
 
-    # save data to pandas dataframe, drop duplicates, add date column
+    # save docs to pandas dataframe, drop duplicates, add date column
     df = pd.DataFrame(data=data)
     df.drop_duplicates(keep='first', inplace=True, ignore_index=True)
     df.insert(loc=0, column="date", value=date)

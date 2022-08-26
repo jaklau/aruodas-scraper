@@ -40,17 +40,17 @@ class AruodasBot:
         page = self.soup.find("div", class_="page-select-v2").find("a").get_text(strip=True).split(" iš ")[1]
         return int(page)
 
-    # crawl aruodas page and parse needed data
+    # crawl aruodas page and parse needed docs
     def read(self):
         # find all rows with flat information
         rows = self.soup.find_all("li", class_="result-item-v3")
-        # go through each flat to extract needed data
+        # go through each flat to extract needed docs
         for i in rows:
             # try to avoid advertise, because ads has same class name as flat rows
             try:
                 item = dict()
 
-                # parse location data
+                # parse location docs
                 location = i.find("span", class_="item-address-v3").get_text(strip=True).split(", ")
                 # 1st item of location description goes to loc1
                 item["loc1"] = location[0]
@@ -95,11 +95,11 @@ class AruodasBot:
                     if x in other:
                         item["status"] = x
 
-                # add flat data to whole page data
+                # add flat docs to whole page docs
                 self.data.append(item)
             except AttributeError:
                 pass
 
-    # print to terminal parsed data
+    # print to terminal parsed docs
     def print(self):
         print(f"page: {self.page}, data: {self.data}")
