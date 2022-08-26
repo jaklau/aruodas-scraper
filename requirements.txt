@@ -4,3 +4,4 @@ bs4~=0.0.1
 beautifulsoup4~=4.11.1
 setuptools==65.3.0
 SQLAlchemy==1.4.40
+psycopg2==2.9.3

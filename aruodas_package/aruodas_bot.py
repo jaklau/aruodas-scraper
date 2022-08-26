@@ -33,7 +33,7 @@ class AruodasBot:
         page_source = self.driver.page_source
 
         # create beautiful soup for page source
-        self.soup = BeautifulSoup(page_source, 'lxml')
+        self.soup = BeautifulSoup(page_source, 'html.parser')
 
     # on aruodas page find last page number. For example: if there is pages: 1,2,3...280 method returns 280.
     def find_last_page(self):
