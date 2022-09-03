@@ -1,0 +1,7 @@
+SQLAlchemy~=1.4.40
+pandas~=1.4.4
+selenium~=4.4.3
+setuptools~=65.3.0
+bs4~=0.0.1
+beautifulsoup4~=4.11.1
+psycopg2~=2.9.3
