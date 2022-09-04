@@ -37,11 +37,13 @@ Sample apartment extracted data example:
 ```
 
 ## Installation
-Install requirements
+Your shell path should be at ```aruodas-scraper``` folder.
+
+Install requirements.
 ```bash
 pip install -r requirements.txt
 ```
-If you want to have an aruodas-scraped package in your system
+If you want to have an aruodas-scraped package in your system,
 use the package manager pip to install ```aruodas-bot``` package.
 ```bash
 pip install .
@@ -64,7 +66,7 @@ python -m unittest tests/test_database.py
 ```
 
 ## Environment variables
-Add these environment variables.
+To run module ```main.py```, it should have these environment variables.
 ```
 HOST={database host};
 DB={database name};
