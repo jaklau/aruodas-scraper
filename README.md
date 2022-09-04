@@ -1,12 +1,12 @@
 # aruodas-scraper
-```aruodas-scraper``` package consist of two modules: ```bot.py``` and ```database.py```.
+Package ```aruodas-scraper``` consist of two modules: ```bot.py``` and ```database.py```.
 \
 \
-```bot.py``` uses ```selenium``` to open https://m.aruodas.lt/butai/puslapis/
+Package module ```bot.py``` uses ```selenium``` to open https://m.aruodas.lt/butai/puslapis/
 and extracts from selected page all flats for sale information.
 \
 \
-```database.py``` uses ```SQLAlchemy``` to connect ```PostgreSQL``` database, and 
+Package module ```database.py``` uses ```SQLAlchemy``` to connect ```PostgreSQL``` database and 
 create tables: ```flats``` and ```log```. You can write scraped data from aruodas
 web page to table.
 \
@@ -44,7 +44,7 @@ python -m unittest tests/test_database.py
 ```
 
 ## Environment variables
-Add these environment variables
+Add these environment variables.
 ```
 HOST={database host};
 DB={database name};
@@ -52,6 +52,6 @@ USER={database user name}
 PASSWORD={database password};
 PATH={path to chrome driver};
 ```
-In directory PATH, for example "C:\Development", you should put your system Chrome driver,
+In directory PATH, for example "C:\Development", you should put your system's Chrome driver,
 which you can download from: https://chromedriver.chromium.org/downloads
 
