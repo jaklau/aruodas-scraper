@@ -1,12 +1,13 @@
+import os
 from selenium import webdriver
 import pandas as pd
 import datetime as dt
 from aruodas_package import AruodasBot, DataBase
 
-USER = "postgres"
-PASSWORD = "123456"
-HOST = "localhost"
-DB = "aruodas"
+USER = os.environ["USER"]
+PASSWORD = os.environ["PASSWORD"]
+HOST = os.environ["HOST"]
+DB = os.environ["DB"]
 
 # connect to database, if table does not exist, create one
 db = DataBase(USER, PASSWORD, HOST, DB)
