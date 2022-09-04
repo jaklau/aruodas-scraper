@@ -19,3 +19,14 @@ Run single test (example).
 ```bash
 python -m unittest tests/test_aruodas_bot.py
 ```
+
+## Environment variables
+Add these environment variables
+C:\Development
+```
+HOST={database host};
+DB={database name};
+USER={database user name}
+PASSWORD={database password};
+PATH={path to chrome driver};
+```
