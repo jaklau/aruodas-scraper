@@ -20,7 +20,8 @@ database table.
 
 Sample apartment extracted data example:
 ```json
-{"date": "2022-09-04",
+{
+  "date": "2022-09-04",
   "loc1": "Vilnius",
   "loc2": "Užupis",
   "street": "Polocko g.",
@@ -31,7 +32,8 @@ Sample apartment extracted data example:
   "year": 2022, 
   "b_type": "mūrinis",
   "h_type": "centrinis kolektorinis",
-  "status": "dalinė apdaila"}
+  "status": "dalinė apdaila"
+}
 ```
 
 ## Installation
