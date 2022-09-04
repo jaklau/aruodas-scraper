@@ -1,7 +1,8 @@
 import unittest
 from selenium import webdriver
-from aruodas_package import AruodasBot
+from aruodas_scraper import Bot
 import os
+import datetime as dt
 
 
 # test AruodasBot class
@@ -11,7 +12,7 @@ class TestAruodasBot(unittest.TestCase):
         driver = webdriver.Chrome()
 
         # run tests page bot
-        self.bot = AruodasBot(driver)
+        self.bot = Bot(driver)
 
         # get current absolute direction
         dirname = os.path.dirname(__file__)
@@ -32,8 +33,10 @@ class TestAruodasBot(unittest.TestCase):
     # test read method
     def test_read(self):
         data = self.bot.data
+        # get current date as string: 2022-01-01
+        date = dt.datetime.now().strftime("%Y-%m-%d")
         self.assertEqual(data[1],
-                         {'loc1': 'Vilnius', 'loc2': 'Užupis', 'street': 'Polocko g.', 'price': 443400.0,
+                         {'date': date, 'loc1': 'Vilnius', 'loc2': 'Užupis', 'street': 'Polocko g.', 'price': 443400.0,
                           'rooms': 3.0, 'area': 78.6, 'floor': '4/4', 'year': 2022, 'b_type': 'mūrinis',
                           'h_type': 'centrinis kolektorinis', 'status': 'dalinė apdaila'})
 

@@ -1,8 +1,7 @@
 import os
 from selenium import webdriver
 import pandas as pd
-import datetime as dt
-from aruodas_package import AruodasBot, DataBase
+from aruodas_scraper import Bot, DataBase
 
 USER = os.environ["USER"]
 PASSWORD = os.environ["PASSWORD"]
@@ -27,7 +26,7 @@ else:
     driver = webdriver.Chrome(options=chrome_options)
 
     # run first page bot
-    bot = AruodasBot(driver)
+    bot = Bot(driver)
     bot.get()
     bot.read()
     bot.print()
@@ -40,7 +39,7 @@ else:
 
     # crawl all remained pages
     for i in range(2, 4):
-        bot = AruodasBot(driver, i)
+        bot = Bot(driver, i)
         bot.get()
         bot.read()
         bot.print()
@@ -49,14 +48,9 @@ else:
     # quit() command quits the entire browser session with all its tabs and windows
     driver.quit()
 
-    # get current date as string: 2022-01-01
-    date = dt.datetime.now().strftime("%Y-%m-%d")
-
     # save docs to pandas dataframe, drop duplicates, add date column
     df = pd.DataFrame(data=data)
     df.drop_duplicates(keep='first', inplace=True, ignore_index=True)
-    df.insert(loc=0, column="date", value=date)
-    df["date"] = pd.to_datetime(df["date"])
 
     # write dataframe to database table and write info about record to log table
     db.write(df)

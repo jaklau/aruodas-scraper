@@ -1,6 +1,6 @@
 from selenium import webdriver
 from bs4 import BeautifulSoup
-
+import datetime as dt
 
 URL = "https://m.aruodas.lt/butai/puslapis/"
 
@@ -13,7 +13,7 @@ H_TYPES = ["centrinis", "centrinis kolektorinis", "dujinis", "elektra", "geoterm
 STATUSES = ["įrengtas", "dalinė apdaila", "neįrengtas", "nebaigtas statyti", "pamatai"]
 
 
-class AruodasBot:
+class Bot:
     # aruodas has bot detecting functions so use selenium to start web browser and extract page source
     # create beautiful soup for that source
     # this method with bs is way faster than crawl all parameters with selenium
@@ -49,7 +49,9 @@ class AruodasBot:
             # try to avoid advertise, because ads has same class name as flat rows
             try:
                 item = dict()
-
+                # get current date as string: 2022-01-01
+                date = dt.datetime.now().strftime("%Y-%m-%d")
+                item["date"] = date
                 # parse location docs
                 location = i.find("span", class_="item-address-v3").get_text(strip=True).split(", ")
                 # 1st item of location description goes to loc1

@@ -1,5 +1,5 @@
 import unittest
-from aruodas_package import DataBase
+from aruodas_scraper import DataBase
 import sqlalchemy as db
 import pandas as pd
 
