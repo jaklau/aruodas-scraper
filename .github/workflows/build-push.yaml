@@ -1,0 +1,16 @@
+name: build-push
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 10,16 * * *'
+
+jobs:
+  build-push:
+    runs-on:
+      - self-hosted
+      - bnk
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
