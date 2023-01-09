@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '0 10,16 * * *'
+  push:
+    paths:
+      - 'tests/test_bot.py'
 
 jobs:
   build-push:
